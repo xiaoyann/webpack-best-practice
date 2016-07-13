@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // 辅助函数
 var utils = require('./utils');
@@ -14,9 +15,7 @@ var DIST_PATH = ROOT_PATH + '/dist';
 // node_modules
 var NODE_MODULES_PATH =  ROOT_PATH + '/node_modules';
 
-// 是否是开发环境
-var __DEV__ = !(process.env.NODE_ENV === 'production');
-
+var __DEV__ = process.env.NODE_ENV !== 'production';
 
 // conf
 var alias = pickFiles({
@@ -54,7 +53,7 @@ var config = {
   },
   output: {
     path: DIST_PATH,
-    filename: 'js/[name].js'
+    filename: 'js/[name].[hash].js'
   },
   module: {},
   resolve: {
@@ -62,9 +61,10 @@ var config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __DEV__: __DEV__
+      // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-    new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js')
+    new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].[hash].js')
   ]
 };
 
@@ -72,6 +72,7 @@ var config = {
 // loaders
 var CACHE_PATH = ROOT_PATH + '/cache';
 config.module.loaders = [];
+
 // 使用 babel 编译 jsx、es6
 config.module.loaders.push({
   test: /\.js$/,
@@ -80,12 +81,22 @@ config.module.loaders.push({
   // 这里使用 loaders ，因为后面还需要添加 loader
   loaders: ['babel?cacheDirectory=' + CACHE_PATH]
 });
-// 编译 sass
-config.module.loaders.push({
-  test: /\.(scss|css)$/,
-  loaders: ['style', 'css', 'sass', 'postcss']
-});
 
+// 编译 sass
+if (__DEV__) {
+  config.module.loaders.push({
+    test: /\.(scss|css)$/,
+    loaders: ['style', 'css', 'sass', 'postcss']
+  });
+} else {
+  config.module.loaders.push({
+    test: /\.(scss|css)$/,
+    loader: ExtractTextPlugin.extract('style-', 'css!sass')
+  });
+  config.plugins.push(
+    new ExtractTextPlugin('css/[name].[hash].css')
+  );
+}
 
 // css autoprefix
 var precss = require('precss');
@@ -94,6 +105,14 @@ config.postcss = function() {
   return [precss, autoprefixer];
 }
 
+// 图片路径处理，压缩
+config.module.loaders.push({
+  test: /\.(?:jpg|gif|png|svg)$/,
+  loaders: [
+    'url?limit=8000&name=img/[hash].[ext]',
+    'image-webpack'
+  ]
+});
 
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -101,7 +120,16 @@ config.plugins.push(
   new HtmlwebpackPlugin({
     filename: 'index.html',
     chunks: ['app', 'lib'],
-    template: SRC_PATH + '/pages/app.html'
+    template: SRC_PATH + '/pages/app.html',
+    minify: __DEV__ ? false : {
+      collapseWhitespace: true,
+      collapseInlineTagWhitespace: true,
+      removeRedundantAttributes: true,
+      removeEmptyAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      removeComments: true
+    }
   })
 );
 

@@ -7,7 +7,9 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "start": "NODE_ENV=development node build/webpack.dev.js --hot",
+    "release": "NODE_ENV=production node build/webpack.dev.js"
   },
   "keywords": [
     "webpack",
@@ -26,8 +28,10 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "glob": "^7.0.5",
     "html-webpack-plugin": "^2.22.0",
+    "image-webpack-loader": "^2.0.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",

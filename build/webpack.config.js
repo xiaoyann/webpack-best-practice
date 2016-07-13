@@ -11,9 +11,12 @@ var ROOT_PATH = fullPath('../');
 var SRC_PATH = ROOT_PATH + '/src';
 // 产出路径
 var DIST_PATH = ROOT_PATH + '/dist';
+// node_modules
+var NODE_MODULES_PATH =  ROOT_PATH + '/node_modules';
 
 // 是否是开发环境
 var __DEV__ = !(process.env.NODE_ENV === 'production');
+
 
 // conf
 var alias = pickFiles({
@@ -43,11 +46,15 @@ alias = Object.assign(alias, pickFiles({
 var config = {
   context: SRC_PATH,
   entry: {
-    app: ['./pages/app.js']
+    app: ['./pages/app.js'],
+    lib: [
+      'react', 'react-dom', 'react-router',
+      'redux', 'react-redux', 'redux-thunk'
+    ],
   },
   output: {
     path: DIST_PATH,
-    filename: 'js/bundle.js'
+    filename: 'js/[name].js'
   },
   module: {},
   resolve: {
@@ -56,13 +63,14 @@ var config = {
   plugins: [
     new webpack.DefinePlugin({
       __DEV__: __DEV__
-    })
+    }),
+    new webpack.optimize.CommonsChunkPlugin('lib', 'js/lib.js')
   ]
 };
 
 
-var CACHE_PATH = ROOT_PATH + '/cache';
 // loaders
+var CACHE_PATH = ROOT_PATH + '/cache';
 config.module.loaders = [];
 // 使用 babel 编译 jsx、es6
 config.module.loaders.push({
@@ -78,22 +86,25 @@ config.module.loaders.push({
   loaders: ['style', 'css', 'sass', 'postcss']
 });
 
-// autoprefix
+
+// css autoprefix
 var precss = require('precss');
 var autoprefixer = require('autoprefixer');
 config.postcss = function() {
   return [precss, autoprefixer];
 }
 
+
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');
 config.plugins.push(
   new HtmlwebpackPlugin({
     filename: 'index.html',
-    chunks: ['app'],
+    chunks: ['app', 'lib'],
     template: SRC_PATH + '/pages/app.html'
   })
 );
+
 
 module.exports = config;
 

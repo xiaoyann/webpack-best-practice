@@ -75,9 +75,15 @@ config.module.loaders.push({
 // 编译 sass
 config.module.loaders.push({
   test: /\.(scss|css)$/,
-  loaders: ['style', 'css', 'sass']
+  loaders: ['style', 'css', 'sass', 'postcss']
 });
 
+// autoprefix
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+config.postcss = function() {
+  return [precss, autoprefixer];
+}
 
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');

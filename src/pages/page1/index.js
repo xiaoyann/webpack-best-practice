@@ -1,4 +1,4 @@
-import React, { component } from 'react';
+import React, { Component } from 'react';
 import './index.scss';
 
 export default class Page1 extends Component {

@@ -9,7 +9,7 @@
   "scripts": {
     "test": "make test",
     "start": "NODE_ENV=development node build/webpack.dev.js --hot",
-    "release": "NODE_ENV=production node build/webpack.dev.js"
+    "release": "NODE_ENV=production node build/webpack.release.js"
   },
   "keywords": [
     "webpack",

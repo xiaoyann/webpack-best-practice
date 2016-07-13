@@ -91,7 +91,7 @@ if (__DEV__) {
 } else {
   config.module.loaders.push({
     test: /\.(scss|css)$/,
-    loader: ExtractTextPlugin.extract('style-', 'css!sass')
+    loader: ExtractTextPlugin.extract('style', 'css!sass!postcss')
   });
   config.plugins.push(
     new ExtractTextPlugin('css/[name].[hash].css')

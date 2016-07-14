@@ -8,8 +8,12 @@
   },
   "scripts": {
     "test": "make test",
-    "start": "NODE_ENV=development node build/webpack.dev.js --hot",
-    "release": "NODE_ENV=production node build/webpack.release.js"
+    "start": "npm run dev:local",
+    "dev:local": "NODE_ENV=development node build/webpack.dev.js --hot",
+    "dev:test": "NODE_ENV=development node build/webpack.dev.js --hot --deploy",
+    "release": "npm run deploy:online",
+    "deploy:test": "NODE_ENV=production node build/webpack.release.js --watch --uglify --deploy=test",
+    "deploy:online": "NODE_ENV=production node build/webpack.release.js --watch --uglify --deploy=online"
   },
   "keywords": [
     "webpack",

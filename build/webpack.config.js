@@ -17,25 +17,33 @@ var NODE_MODULES_PATH =  ROOT_PATH + '/node_modules';
 
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
+var args = process.argv;
+var uglify = args.indexOf('--uglify') > -1;
+
+
 // conf
+// import api from 'conf/api';
 var alias = pickFiles({
   id: /(conf\/[^\/]+).js$/,
   pattern: SRC_PATH + '/conf/*.js'
 });
 
 // components
+// import Alert from 'components/alert';
 alias = Object.assign(alias, pickFiles({
   id: /(components\/[^\/]+)/,
   pattern: SRC_PATH + '/components/*/index.js'
 }));
 
 // reducers
+// import reducers from 'reducers/index';
 alias = Object.assign(alias, pickFiles({
   id: /(reducers\/[^\/]+).js/,
   pattern: SRC_PATH + '/js/reducers/*'
 }));
 
 // actions
+// import actions from 'actions/index';
 alias = Object.assign(alias, pickFiles({
   id: /(actions\/[^\/]+).js/,
   pattern: SRC_PATH + '/js/actions/*'
@@ -86,12 +94,12 @@ config.module.loaders.push({
 if (__DEV__) {
   config.module.loaders.push({
     test: /\.(scss|css)$/,
-    loaders: ['style', 'css', 'sass', 'postcss']
+    loaders: ['style', 'css', 'postcss', 'sass']
   });
 } else {
   config.module.loaders.push({
     test: /\.(scss|css)$/,
-    loader: ExtractTextPlugin.extract('style', 'css!sass!postcss')
+    loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
   });
   config.plugins.push(
     new ExtractTextPlugin('css/[name].[hash].css')
@@ -113,6 +121,17 @@ config.module.loaders.push({
     'image-webpack'
   ]
 });
+
+// 压缩 js, css
+if (uglify) {
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
+  );
+}
 
 // html 页面
 var HtmlwebpackPlugin = require('html-webpack-plugin');

@@ -13,6 +13,7 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
+var DeployPlugin = require('./deploy.plugin');
 var utils = require('./utils');
 
 var PORT = 8080;
@@ -35,6 +36,20 @@ if (hot === true) {
   config.module.loaders[0].loaders.unshift('react-hot');
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
+
+// 是否发布到测试环境
+if (deploy === true) {
+  // config.plugins.push(
+  //   new DeployPlugin({
+  //     user: '',
+  //     password: '', 
+  //     host: '', 
+  //     keepalive: 10000000
+  //   }, 
+  //   [{reg: /html$/, to: '/xxx/xxx/xxx/app/views/'}])
+  // );
+}
+
 
 new WebpackDevServer(webpack(config), {
   hot: hot,

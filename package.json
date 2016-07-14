@@ -33,6 +33,7 @@
     "babel-preset-react": "^6.11.1",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "ftp": "^0.3.10",
     "glob": "^7.0.5",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",

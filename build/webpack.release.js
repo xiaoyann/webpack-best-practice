@@ -11,6 +11,7 @@
 
 var webpack = require('webpack');
 var config = require('./webpack.config');
+var RenamePlugin = require('./rename.plugin');
 
 var args = process.argv;
 var watch = args.indexOf('--watch') > -1;
@@ -26,6 +27,8 @@ if (online) {
 } else {
   config.output.publicPath = testPublicPath; 
 }
+
+config.plugins.push(new RenamePlugin());
 
 var compiler = webpack(config);
 

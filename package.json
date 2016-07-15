@@ -13,7 +13,7 @@
     "dev:test": "NODE_ENV=development node build/webpack.dev.js --hot --deploy",
     "release": "npm run deploy:online",
     "deploy:test": "NODE_ENV=production node build/webpack.release.js --watch --uglify --deploy=test",
-    "deploy:online": "NODE_ENV=production node build/webpack.release.js --watch --uglify --deploy=online"
+    "deploy:online": "NODE_ENV=production node build/webpack.release.js --uglify --deploy=online"
   },
   "keywords": [
     "webpack",
@@ -37,6 +37,7 @@
     "glob": "^7.0.5",
     "html-webpack-plugin": "^2.22.0",
     "image-webpack-loader": "^2.0.0",
+    "md5": "^2.1.0",
     "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",

@@ -12,6 +12,7 @@ var ROOT_PATH = fullPath('../');
 var SRC_PATH = ROOT_PATH + '/src';
 // 产出路径
 var DIST_PATH = ROOT_PATH + '/dist';
+// var DIST_PATH = '/Users/xiaoyan/working/www';
 // node_modules
 var NODE_MODULES_PATH =  ROOT_PATH + '/node_modules';
 
@@ -61,7 +62,8 @@ var config = {
   },
   output: {
     path: DIST_PATH,
-    filename: 'js/[name].[hash].js'
+    filename: 'js/[name].js',
+    // filename: 'js/[name].[hash].js',
   },
   module: {},
   resolve: {
@@ -72,7 +74,8 @@ var config = {
       // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-    new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].[hash].js')
+    new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].js')
+    // new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].[hash].js')
   ]
 };
 
@@ -102,7 +105,8 @@ if (__DEV__) {
     loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
   });
   config.plugins.push(
-    new ExtractTextPlugin('css/[name].[hash].css')
+    new ExtractTextPlugin('css/[name].css')
+    // new ExtractTextPlugin('css/[name].[hash].css')
   );
 }
 
@@ -151,6 +155,7 @@ config.plugins.push(
     }
   })
 );
+
 
 
 module.exports = config;

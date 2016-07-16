@@ -50,6 +50,13 @@ alias = Object.assign(alias, pickFiles({
   pattern: SRC_PATH + '/js/actions/*'
 }));
 
+alias = Object.assign(alias, {
+  'react-router': NODE_MODULES_PATH + '/react-router/lib/index.js',
+  'react-redux': NODE_MODULES_PATH + '/react-redux/lib/index.js',
+  'redux': NODE_MODULES_PATH + '/redux/lib/index.js',
+  'redux-thunk': NODE_MODULES_PATH + '/redux-thunk/lib/index.js'
+});
+
 
 var config = {
   context: SRC_PATH,
@@ -67,6 +74,7 @@ var config = {
   },
   module: {},
   resolve: {
+    root: SRC_PATH,
     alias: alias
   },
   plugins: [
@@ -134,6 +142,13 @@ if (uglify) {
         warnings: false
       }
     })
+  );
+}
+
+// 去掉重复模块
+if (!__DEV__) {
+  config.plugins.push(
+    new webpack.optimize.DedupePlugin()
   );
 }
 

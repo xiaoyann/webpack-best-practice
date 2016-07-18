@@ -50,6 +50,8 @@ if (deploy === true) {
   // );
 }
 
+// see http://webpack.github.io/docs/build-performance.html#sourcemaps
+config.devtool = '#eval-cheap-module-source-map';
 
 new WebpackDevServer(webpack(config), {
   hot: hot,

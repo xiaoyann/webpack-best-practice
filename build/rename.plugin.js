@@ -21,7 +21,9 @@ RenamePlugin.prototype.apply = function(compiler) {
           originName: fileName,
           hashName: newName
         });
-        fs.rename(file.existsAt, file.existsAt.replace(fileName, newName));
+        if (file.emitted) {
+          fs.rename(file.existsAt, file.existsAt.replace(fileName, newName));
+        }   
       } 
       else if (/\.html$/) {
         htmlFiles.push(fileName);

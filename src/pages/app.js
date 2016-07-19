@@ -21,7 +21,7 @@ class Application extends Component {
           <Link to="page1">page1</Link>
           <Link to="page2">page2</Link>
         </div>  
-        { this.props.children }
+        {this.props.children}
       </div>
     );
   }
@@ -30,12 +30,12 @@ class Application extends Component {
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 render((
-  <Provider store={ store }>
-    <Router history={ browserHistory }>
-      <Route path="/" component={ Application }>
-        <IndexRoute component={ Page1 }/>
-        <Route path="page1" component={ Page1 }></Route>
-        <Route path="page2" component={ Page2 }></Route>
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={Application}>
+        <IndexRoute component={Page1}/>
+        <Route path="page1" component={Page1}></Route>
+        <Route path="page2" component={Page2}></Route>
       </Route>
     </Router>
   </Provider>

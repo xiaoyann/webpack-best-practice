@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
+var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
 
 // 辅助函数
 var utils = require('./utils');
@@ -71,6 +72,7 @@ var config = {
   output: {
     path: DIST_PATH,
     // chunkhash 不能与 --hot 同时使用
+    // see https://github.com/webpack/webpack-dev-server/issues/377
     filename: __DEV__ ? 'js/[name].js' : 'js/[name].[chunkhash].js',
     chunkFilename: __DEV__ ? 'js/[name].js' : 'js/[name].[chunkhash].js'
   },
@@ -88,7 +90,9 @@ var config = {
       names: ['lib', 'manifest']
     }),
     // 使用文件名替换数字作为模块ID
-    new webpack.NamedModulesPlugin(),
+    // new webpack.NamedModulesPlugin(),
+    // 使用 hash 作模块 ID，文件名作ID太长了，文件大小剧增
+    new HashedModuleIdsPlugin(),
     // 根据文件内容生成 hash
     new WebpackMd5Hash()
   ]

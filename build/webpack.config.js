@@ -12,7 +12,7 @@ var ROOT_PATH = fullPath('../');
 var SRC_PATH = ROOT_PATH + '/src';
 // 产出路径
 var DIST_PATH = ROOT_PATH + '/dist';
-// var DIST_PATH = '/Users/xiaoyan/working/www';
+
 // node_modules
 var NODE_MODULES_PATH =  ROOT_PATH + '/node_modules';
 

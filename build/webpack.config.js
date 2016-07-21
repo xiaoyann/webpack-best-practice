@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
 
 // 辅助函数
 var utils = require('./utils');
@@ -69,8 +70,9 @@ var config = {
   },
   output: {
     path: DIST_PATH,
-    filename: 'js/[name].js',
-    // filename: 'js/[name].[hash].js',
+    // chunkhash 不能与 --hot 同时使用
+    filename: __DEV__ ? 'js/[name].js' : 'js/[name].[chunkhash].js',
+    chunkFilename: __DEV__ ? 'js/[name].js' : 'js/[name].[chunkhash].js'
   },
   module: {},
   resolve: {
@@ -82,8 +84,13 @@ var config = {
       // http://stackoverflow.com/questions/30030031/passing-environment-dependent-variables-in-webpack
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'development')
     }),
-    new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].js')
-    // new webpack.optimize.CommonsChunkPlugin('lib', 'js/[name].[hash].js')
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['lib', 'manifest']
+    }),
+    // 使用文件名替换数字作为模块ID
+    new webpack.NamedModulesPlugin(),
+    // 根据文件内容生成 hash
+    new WebpackMd5Hash()
   ]
 };
 
@@ -113,8 +120,7 @@ if (__DEV__) {
     loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
   });
   config.plugins.push(
-    new ExtractTextPlugin('css/[name].css')
-    // new ExtractTextPlugin('css/[name].[hash].css')
+    new ExtractTextPlugin('css/[name].[contenthash].css')
   );
 }
 
@@ -140,6 +146,9 @@ if (uglify) {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
+      },
+      output: {
+        comments: false
       }
     })
   );
@@ -171,7 +180,27 @@ config.plugins.push(
   })
 );
 
-
+// 内嵌 manifest 到 html 页面
+config.plugins.push(function() {
+  this.plugin('compilation', function(compilation) {
+    compilation.plugin('html-webpack-plugin-after-emit', function(file, callback) {
+      var manifest = '';
+      Object.keys(compilation.assets).forEach(function(filename) {
+        if (/\/?manifest./.test(filename)) {
+          manifest = '<script>' + compilation.assets[filename].source() + '</script>';
+        }
+      });
+      if (manifest) {
+        var htmlSource = file.html.source();
+        htmlSource = htmlSource.replace(/(<\/head>)/, manifest + '$1');
+        file.html.source = function() {
+          return htmlSource;
+        };
+      }
+      callback(null, file);
+    });
+  });
+});
 
 module.exports = config;
 

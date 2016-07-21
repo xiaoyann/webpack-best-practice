@@ -28,7 +28,7 @@ if (online) {
   config.output.publicPath = testPublicPath; 
 }
 
-config.plugins.push(new RenamePlugin());
+// config.plugins.push(new RenamePlugin());
 
 var compiler = webpack(config);
 

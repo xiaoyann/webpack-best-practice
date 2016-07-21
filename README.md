@@ -16,4 +16,6 @@ $ npm install
 $ npm start
 ```
 
-> 对应的文章： [使用 webpack + react + redux + es6 开发组件化前端项目](https://52dachu.com/post/201606271753.html)
+> 对应的文章： [使用 webpack + react + redux + es6 开发组件化前端项目](https://segmentfault.com/a/1190000005969488)
+
+文章有更新，关于文件hash的问题，希望大家能注意：https://segmentfault.com/a/1190000005969488#articleHeader15

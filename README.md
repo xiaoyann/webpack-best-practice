@@ -1,4 +1,4 @@
-# webpack-react-redux-es6-boilerplate
+# webpack-react-redux-es6-boilerplate ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
 使用 webpack + react + redux + es6 的组件化前端项目 boilerplate。
 

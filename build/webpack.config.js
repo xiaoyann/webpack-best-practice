@@ -190,7 +190,7 @@ config.plugins.push(function() {
     compilation.plugin('html-webpack-plugin-after-emit', function(file, callback) {
       var manifest = '';
       Object.keys(compilation.assets).forEach(function(filename) {
-        if (/\/?manifest\.[^\/]+\.js$/.test(filename)) {
+        if (/\/?manifest.[^\/]*js$/.test(filename)) {
           manifest = '<script>' + compilation.assets[filename].source() + '</script>';
         }
       });

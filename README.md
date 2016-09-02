@@ -6,6 +6,7 @@
 
 > 开发时的环境
 
+- [x] Mac OSX Yosemite(windows 下会有兼容性问题)
 - [x] Node v6.3.0
 - [x] NPM v3.10.3
 

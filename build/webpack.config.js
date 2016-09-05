@@ -63,7 +63,7 @@ alias = Object.assign(alias, {
 var config = {
   context: SRC_PATH,
   entry: {
-    app: ['./pages/app.js'],
+    app: [SRC_PATH + '/pages/app.js'],
     lib: [
       'react', 'react-dom', 'react-router',
       'redux', 'react-redux', 'redux-thunk'
@@ -107,7 +107,6 @@ config.module.loaders = [];
 config.module.loaders.push({
   test: /\.js$/,
   exclude: /node_modules/,
-  include: SRC_PATH,
   // 这里使用 loaders ，因为后面还需要添加 loader
   loaders: ['babel?cacheDirectory=' + CACHE_PATH]
 });

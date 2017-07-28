@@ -22,6 +22,7 @@ $ npm start
 * 已修复 2016年09月05日15:03:27
 * 因为使用了 node-sass ，需要先安装 [Microsoft Windows SDK for Windows 7 and .NET Framework 4
 ](https://www.microsoft.com/en-us/download/details.aspx?id=8279)
+* http://blog.csdn.net/ty_0930/article/details/70184392
 
 > 对应的文章： [使用 webpack + react + redux + es6 开发组件化前端项目](https://segmentfault.com/a/1190000005969488)
 

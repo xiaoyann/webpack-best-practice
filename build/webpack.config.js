@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var WebpackMd5Hash = require('webpack-md5-hash');
 var HashedModuleIdsPlugin = require('./HashedModuleIdsPlugin');
+var path = require('path');
 
 // 辅助函数
 var utils = require('./utils');
@@ -11,7 +12,9 @@ var pickFiles = utils.pickFiles;
 // 项目根路径
 var ROOT_PATH = fullPath('../');
 // 项目源码路径
-var SRC_PATH = ROOT_PATH + '/src';
+//windows has "" as path separator
+// var SRC_PATH = ROOT_PATH + '/src';
+var SRC_PATH = path.join(ROOT_PATH, 'src');
 // 产出路径
 var DIST_PATH = ROOT_PATH + '/dist';
 

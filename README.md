@@ -29,3 +29,7 @@ $ npm start
 文章有更新，关于文件hash的问题，希望大家能注意：https://segmentfault.com/a/1190000005969488#articleHeader15
 
 * [vue-webpack-template](https://github.com/xiaoyann/vue-webpack-template)
+
+## 广告
+
+招中高级前端开发工程师，北京高碑店四惠大厦，https://www.lagou.com/jobs/3207461.html

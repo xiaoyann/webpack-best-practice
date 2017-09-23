@@ -1,0 +1,57 @@
+{
+  "name": "webpack-vue-boilerplate",
+  "version": "1.0.0",
+  "description": "A Vue.js project with webpack",
+  "author": "xiaoyann <0x0886@gmail.com>",
+  "scripts": {
+    "start": "node scripts/server.js",
+    "build": "rm -rf dist/* && node scripts/build.js",
+    "deploy": "deploy-sftp",
+    "lint": "eslint ./src --ext .js"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "body-parser": "^1.17.1",
+    "css-loader": "^0.28.4",
+    "deploy-kit": "^3.2.0",
+    "eslint": "^4.3.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "inline-manifest-webpack-plugin": "^3.0.1",
+    "postcss-loader": "^2.0.6",
+    "pre-commit": "^1.2.2",
+    "shelljs": "^0.7.7",
+    "style-loader": "^0.18.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "url-loader": "^0.5.9",
+    "vconsole": "^2.5.2",
+    "vconsole-elements": "^1.0.2",
+    "vue-template-compiler": "^2.4.1",
+    "vue-template-loader": "^0.3.1",
+    "webpack": "^3.2.1",
+    "webpack-chunk-hash": "^0.4.0",
+    "webpack-dev-server": "^2.5.1",
+    "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "qs": "^6.4.0",
+    "es6-promise": "^4.1.0",
+    "vue-router": "^2.5.3",
+    "vue": "^2.3.2"
+  }
+}

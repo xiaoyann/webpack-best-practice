@@ -1,0 +1,14 @@
+<nav>
+  <%
+    [
+      { name: '首页', path: 'index.html' },
+      { name: '关于', path: 'about.html' }
+    ].forEach(function(nav, idx) {
+  %>
+
+  <%- '<a '+ (idx === selected ? 'class="selected"' : '') +' href="'+ nav.path +'">' + nav.name + '</a>' %>
+
+  <%
+    })
+  %>
+</nav>

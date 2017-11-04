@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="<%- require('css/public.styl') %>">
+  <% links.forEach(function(link) { %>
+  <link rel="stylesheet" href="<%- link %>">
+  <% })%>
+  <title><%- title %></title>
+  <script>
+    var __CONFIG__ = {} // global shared config
+    // API base path
+    __CONFIG__.apiPath = '<%=htmlWebpackPlugin.options.apiPath%>'
+    // application version which read from package.json
+    __CONFIG__.version = '<%=htmlWebpackPlugin.options.appVersion%>'
+    // is debug mode ?
+    __CONFIG__.debug = /(\?|&)debug/.test(location.href)
+  </script>
+  <%- htmlWebpackPlugin.files.webpackManifest %>
+</head>
+<body>

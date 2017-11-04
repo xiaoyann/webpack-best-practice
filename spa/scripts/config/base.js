@@ -34,7 +34,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.vue'],
     alias: helper.alias()
   },
 
@@ -49,6 +49,10 @@ module.exports = {
             img: 'src'
           }
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,

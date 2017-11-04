@@ -40,7 +40,8 @@
     "url-loader": "^0.5.9",
     "vconsole": "^2.5.2",
     "vconsole-elements": "^1.0.2",
-    "vue-template-compiler": "^2.4.1",
+    "vue-loader": "^13.4.0",
+    "vue-template-compiler": "^2.5.3",
     "vue-template-loader": "^0.3.1",
     "webpack": "^3.2.1",
     "webpack-chunk-hash": "^0.4.0",
@@ -49,9 +50,9 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "qs": "^6.4.0",
     "es6-promise": "^4.1.0",
-    "vue-router": "^2.5.3",
-    "vue": "^2.3.2"
+    "qs": "^6.4.0",
+    "vue": "^2.5.3",
+    "vue-router": "^2.5.3"
   }
 }

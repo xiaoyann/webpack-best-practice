@@ -29,7 +29,7 @@ config.entry['app'] = entryMixins.concat(config.entry['app'])
 
 const server = new Server(webpack(config), {
   hot: useHotReload,
-  stats: { colors: true, chunks: false, modules: false },
+  stats: { colors: true, chunks: false, modules: false, children: false },
   disableHostCheck: true
 })
 

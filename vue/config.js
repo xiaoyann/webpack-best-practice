@@ -20,4 +20,4 @@ exports.vendor = [
 ]
 
 // public path
-exports.publicPath = '/static'
+exports.publicPath = '/static/'

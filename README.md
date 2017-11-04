@@ -1,6 +1,6 @@
 ## About this repo
 
-该项目本来是 2016 年写的一篇[《使用 webpack + react + redux + es6 开发组件化前端项目》](https://segmentfault.com/a/1190000005969488?_ea=2766439) 的代码示例，已保存到 [v1.0.0](https://github.com/xiaoyann/webpack-best-practice/tree/v1.0.0) 分支。
+这个项目本来是 2016 年写的一篇[《使用 webpack + react + redux + es6 开发组件化前端项目》](https://segmentfault.com/a/1190000005969488?_ea=2766439) 的代码示例，已保存到 [v1.0.0](https://github.com/xiaoyann/webpack-best-practice/tree/v1.0.0) 分支作为存档。
 
 现在 webpack 已经从当时的 v1.13.0 发展到了 v3.8.0，改进了不少，相关的配置方式也有所改变。这一年多无论是多页的 PC 端项目，还是移动端的单页应用，都是使用的 webpack。遇到过一些问题，也研究过一些解决方案，是应该好好总结一下了。
 

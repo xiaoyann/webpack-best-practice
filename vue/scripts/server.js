@@ -33,7 +33,7 @@ const server = new Server(webpack(config), {
   disableHostCheck: true
 })
 
-server.listen(port, function() {
+server.listen(port, undefined, function() {
   console.log('\n ==> '+ address +' \n')
 })
 

@@ -1,7 +1,20 @@
-## webpack 最佳实践
+## About this repo
 
-2016 年使用 webpack + react + es6 总结了一套完整配置，那时 webpack 还是 1.x 版本，现在 webpack 已经更新到了 3.x，再加上这段时间对整个项目配置又有了重新的思考，于是重新总结了下配置方案，并包含了多个框架的完整配置，所以原来的项目名字已不合适，查看旧版请切换到 [1.0.0](https://github.com/xiaoyann/webpack-best-practice/tree/v1.0.0) 分支
+该项目本来是 2016 年写的一篇[《使用 webpack + react + redux + es6 开发组件化前端项目》](https://segmentfault.com/a/1190000005969488?_ea=2766439) 的代码示例，已保存到 [v1.0.0](https://github.com/xiaoyann/webpack-best-practice/tree/v1.0.0) 分支。
 
-* [webpack + vue 单页完整项目配置](https://github.com/xiaoyann/webpack-best-practice/tree/master/vue)
-* [webpack + react 单页完整项目配置](https://github.com/xiaoyann/webpack-best-practice/tree/master/react)
-* [webpack + jquery 多页应用完整项目配置](https://github.com/xiaoyann/webpack-best-practice/tree/master/jquery)
+现在 webpack 已经从当时的 v1.13.0 发展到了 v3.8.0，改进了不少，相关的配置方式也有所改变。这一年多无论是多页的 PC 端项目，还是移动端的单页应用，都是使用的 webpack。遇到过一些问题，也研究过一些解决方案，是应该好好总结一下了。
+
+本项目中的文章会围绕单页应用与多页应用展开，下面是对应的代码示例：
+
+* [SPA](./spa)
+* [MPA](./mpa)
+
+## Articles
+
+- [ ] 《从项目工程需求角度出发理解 webpack 的利与弊》
+- [ ] 《如何灵活拆分 CSS 文件？》
+- [ ] 《如何快速实现一个简单却实用的数据 Mock 方案？》
+- [ ] 《多页应用的构建方案如何设计？》
+- [ ] 《如何提高大型项目的构建速度？》
+
+......

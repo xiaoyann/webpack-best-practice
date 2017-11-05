@@ -11,10 +11,16 @@
 
 ## Articles
 
-- [ ] 《从项目工程需求角度出发理解 webpack 的利与弊》
+- [ ] [《从前端工程角度理解 Webpack》](./understanding-webpack.md)
 - [ ] 《如何灵活拆分 CSS 文件？》
 - [ ] 《如何快速实现一个简单却实用的数据 Mock 方案？》
 - [ ] 《多页应用的构建方案如何设计？》
 - [ ] 《如何提高大型项目的构建速度？》
 
 ......
+
+## License
+
+![](https://camo.githubusercontent.com/02a9a61565702199bb1dd97754b0d635a3a95e71/687474703a2f2f692e6372656174697665636f6d6d6f6e732e6f72672f6c2f62792d6e632d6e642f332e302f38387833312e706e67) 
+
+该项目中所有文章采用 [署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 进行许可 。
